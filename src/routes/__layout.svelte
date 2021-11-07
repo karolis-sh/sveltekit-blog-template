@@ -1,12 +1,12 @@
 <script>
-  import '../app.css'
-  import '../prism.css'
-  import 'focus-visible'
-  import { MoonIcon, SunIcon } from 'heroicons-svelte/solid'
-  import { browser } from '$app/env'
-  import { name } from '$lib/info'
+  import '../app.css';
+  import '../prism.css';
+  import 'focus-visible';
+  import { MoonIcon, SunIcon } from 'heroicons-svelte/solid';
+  import { browser } from '$app/env';
+  import { name } from '$lib/info';
 
-  let prefersLight = browser ? Boolean(JSON.parse(localStorage.getItem('prefersLight'))) : false
+  let prefersLight = browser ? Boolean(JSON.parse(localStorage.getItem('prefersLight'))) : false;
 </script>
 
 <div class="flex flex-col min-h-screen">
@@ -23,13 +23,13 @@
           aria-checked={!prefersLight}
           class="h-4 w-4 sm:h-8 sm:w-8 sm:p-1"
           on:click={() => {
-            prefersLight = !prefersLight
-            localStorage.setItem('prefersLight', prefersLight.toString())
+            prefersLight = !prefersLight;
+            localStorage.setItem('prefersLight', prefersLight.toString());
 
             if (prefersLight) {
-              document.querySelector('html').classList.remove('dark')
+              document.querySelector('html').classList.remove('dark');
             } else {
-              document.querySelector('html').classList.add('dark')
+              document.querySelector('html').classList.add('dark');
             }
           }}
         >

@@ -1,15 +1,15 @@
 <script context="module">
-  import { getPosts } from '$lib/get-posts'
+  import { getPosts } from '$lib/get-posts';
 
-  export const prerender = true
+  export const prerender = true;
 
   export const load = async () => {
     return {
       props: {
-        posts: getPosts().map(post => post.metadata)
-      }
-    }
-  }
+        posts: getPosts().map((post) => post.metadata),
+      },
+    };
+  };
 </script>
 
 <script>
@@ -17,7 +17,7 @@
   import { name } from '$lib/info.js';
   import { format } from 'date-fns';
 
-  export let posts
+  export let posts;
 </script>
 
 <svelte:head>

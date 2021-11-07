@@ -1,6 +1,9 @@
-.DS_Store
+# npm files
 node_modules
-.svelte-kit
-.vercel
-/build
+package-lock.json
+*.log*
+
+# project
+/.svelte-kit
 /public
+.eslintcache

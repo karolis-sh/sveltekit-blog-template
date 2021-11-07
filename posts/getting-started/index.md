@@ -46,7 +46,7 @@ For code blocks, it uses a slightly modified Night Owl theme. You can change the
 
 ```javascript
 function helloWorld() {
-  return 'Hello World'
+  return 'Hello World';
 }
 ```
 

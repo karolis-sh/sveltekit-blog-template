@@ -1,4 +1,21 @@
-.cache
+*
+!*/
+!*.json
+!*.md
+!*.yml
+!*.html
+!*.css
+!*.js
+!*.mjs
+!*.cjs
+!*.ts
+!*.tsx
+!*.svelte
+
+# npm files
+node_modules
 package.json
-package-lock.json
-public
+
+# project
+/.svelte-kit
+/public

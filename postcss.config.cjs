@@ -1,10 +1,10 @@
-const tailwindcss = require('tailwindcss')
-const autoprefixer = require('autoprefixer')
-const cssnano = require('cssnano')
-const focusVisible = require('postcss-focus-visible')
+const tailwindcss = require('tailwindcss');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+const focusVisible = require('postcss-focus-visible');
 
-const mode = process.env.NODE_ENV
-const dev = mode === 'development'
+const mode = process.env.NODE_ENV;
+const dev = mode === 'development';
 
 module.exports = {
   plugins: [
@@ -18,9 +18,9 @@ module.exports = {
 
     !dev &&
       cssnano({
-        preset: 'default'
+        preset: 'default',
       }),
 
-    focusVisible
-  ]
-}
+    focusVisible,
+  ],
+};

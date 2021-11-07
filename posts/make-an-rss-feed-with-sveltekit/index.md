@@ -94,12 +94,12 @@ return later in this post:
 export async function get() {
   const headers = {
     'Cache-Control': 'max-age=0, s-maxage=3600',
-    'Content-Type': 'application/xml'
-  }
+    'Content-Type': 'application/xml',
+  };
   return {
     headers,
-    body: `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0"></rss>`
-  }
+    body: `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0"></rss>`,
+  };
 }
 ```
 
@@ -119,13 +119,13 @@ Now to add in the `<channel>` element with the required `<title>`,
 I'll import these and hardcode in a description for now.
 
 ```js
-import { name, website } from '$lib/info'
+import { name, website } from '$lib/info';
 
 export async function get() {
   const headers = {
     'Cache-Control': 'max-age=0, s-maxage=3600',
-    'Content-Type': 'application/xml'
-  }
+    'Content-Type': 'application/xml',
+  };
   return {
     headers,
     body: `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
@@ -134,8 +134,8 @@ export async function get() {
         <link>${website}</link>
         <description>A blog built with SvelteKit about tech and stuff!</description>
       </channel>
-    </rss>`
-  }
+    </rss>`,
+  };
 }
 ```
 
@@ -158,9 +158,9 @@ export async function getPosts() {
     // get post metadata
     .map(([, post]) => post.metadata)
     // sort by date
-    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
 
-  return posts
+  return posts;
 }
 ```
 
@@ -171,21 +171,21 @@ First up though, rather than have the return statement all cluttered
 up with the generated XML I'll break this into it's own function:
 
 ```js
-import { getPosts } from '$lib/get-posts'
-import { name, website } from '$lib/info'
+import { getPosts } from '$lib/get-posts';
+import { name, website } from '$lib/info';
 
 export async function get() {
-  const posts = await getPosts()
-  const body = xml(posts)
+  const posts = await getPosts();
+  const body = xml(posts);
 
   const headers = {
     'Cache-Control': 'max-age=0, s-maxage=3600',
-    'Content-Type': 'application/xml'
-  }
+    'Content-Type': 'application/xml',
+  };
   return {
     headers,
-    body
-  }
+    body,
+  };
 }
 
 const xml = (
@@ -196,7 +196,7 @@ const xml = (
     <link>${website}</link>
     <description>A blog built with SvelteKit about tech and stuff!</description>
   </channel>
-</rss>`
+</rss>`;
 ```
 
 Now it's a case of mapping over the posts and creating the XML for
@@ -206,21 +206,21 @@ mapping over the `posts` variable returned from `getPosts`.
 Here's the complete file:
 
 ```js
-import { getPosts } from '$lib/get-posts'
-import { name, website } from '$lib/info'
+import { getPosts } from '$lib/get-posts';
+import { name, website } from '$lib/info';
 
 export async function get() {
-  const posts = await getPosts()
-  const body = xml(posts)
+  const posts = await getPosts();
+  const body = xml(posts);
 
   const headers = {
     'Cache-Control': 'max-age=0, s-maxage=3600',
-    'Content-Type': 'application/xml'
-  }
+    'Content-Type': 'application/xml',
+  };
   return {
     headers,
-    body
-  }
+    body,
+  };
 }
 
 const xml = (
@@ -253,7 +253,7 @@ const xml = (
       )
       .join('')}
   </channel>
-</rss>`
+</rss>`;
 ```
 
 You'll notice I've added some extra markup for `<content:encoded>` and

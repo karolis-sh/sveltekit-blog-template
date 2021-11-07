@@ -1,7 +1,7 @@
-import { mdsvex } from 'mdsvex'
-import mdsvexConfig from './mdsvex.config.js'
-import preprocess from 'svelte-preprocess'
-import adapter from '@sveltejs/adapter-static'
+import { mdsvex } from 'mdsvex';
+import mdsvexConfig from './mdsvex.config.js';
+import preprocess from 'svelte-preprocess';
+import adapter from '@sveltejs/adapter-static';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -12,22 +12,29 @@ const config = {
     mdsvex(mdsvexConfig),
     [
       preprocess({
-        postcss: true
-      })
-    ]
+        postcss: true,
+      }),
+    ],
   ],
 
   kit: {
     target: '#svelte',
     adapter: adapter({
       pages: 'public',
-      assets: 'public'
-    })
-  }
-}
+      assets: 'public',
+    }),
+    vite: {
+      server: {
+        fs: {
+          allow: ['posts'],
+        },
+      },
+    },
+  },
+};
 
-export default config
+export default config;
 // Workaround until SvelteKit uses Vite 2.3.8 (and it's confirmed to fix the Tailwind JIT problem)
-const mode = process.env.NODE_ENV
-const dev = mode === 'development'
-process.env.TAILWIND_MODE = dev ? 'watch' : 'build'
+const mode = process.env.NODE_ENV;
+const dev = mode === 'development';
+process.env.TAILWIND_MODE = dev ? 'watch' : 'build';

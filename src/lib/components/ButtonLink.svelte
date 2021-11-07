@@ -1,7 +1,6 @@
 <script>
-  export let href
-  export let isBack = false
-
+  export let href;
+  export let isBack = false;
 </script>
 
 <a

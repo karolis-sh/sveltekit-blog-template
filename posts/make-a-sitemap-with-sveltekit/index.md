@@ -85,8 +85,8 @@ visual feedback:
 export async function get() {
   const headers = {
     'Cache-Control': 'max-age=0, s-maxage=3600',
-    'Content-Type': 'application/xml'
-  }
+    'Content-Type': 'application/xml',
+  };
   return {
     headers,
     body: `<?xml version="1.0" encoding="UTF-8" ?>
@@ -97,8 +97,8 @@ export async function get() {
       xmlns:mobile="https://www.google.com/schemas/sitemap-mobile/1.0"
       xmlns:image="https://www.google.com/schemas/sitemap-image/1.1"
       xmlns:video="https://www.google.com/schemas/sitemap-video/1.1"
-    ></urlset>`
-  }
+    ></urlset>`,
+  };
 }
 ```
 
@@ -127,13 +127,13 @@ In Matt's template there's an `info.js` file that contains the project
 `name` and `website` links. I'll import the `website` and use that.
 
 ```js
-import { website } from '$lib/info'
+import { website } from '$lib/info';
 
 export async function get() {
   const headers = {
     'Cache-Control': 'max-age=0, s-maxage=3600',
-    'Content-Type': 'application/xml'
-  }
+    'Content-Type': 'application/xml',
+  };
   return {
     headers,
     body: `<?xml version="1.0" encoding="UTF-8" ?>
@@ -150,8 +150,8 @@ export async function get() {
         <changefreq>daily</changefreq>
         <priority>0.7</priority>
       </url>
-    </urlset>`
-  }
+    </urlset>`,
+  };
 }
 ```
 
@@ -180,9 +180,9 @@ export async function getPosts() {
     // get post metadata
     .map(([, post]) => post.metadata)
     // sort by date
-    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
 
-  return posts
+  return posts;
 }
 ```
 
@@ -224,7 +224,7 @@ const sitemap = (posts) => `<?xml version="1.0" encoding="UTF-8" ?>
   `
     )
     .join('')}
-</urlset>`
+</urlset>`;
 ```
 
 Now in the get function I'll pass the `posts` from the `getPosts()`
@@ -234,21 +234,21 @@ into the `sitemap` function and use that for the body return of
 Here's the full file:
 
 ```js
-import { getPosts } from '$lib/get-posts'
-import { website } from '$lib/info'
+import { getPosts } from '$lib/get-posts';
+import { website } from '$lib/info';
 
 export async function get() {
-  const posts = await getPosts()
-  const body = sitemap(posts)
+  const posts = await getPosts();
+  const body = sitemap(posts);
 
   const headers = {
     'Cache-Control': 'max-age=0, s-maxage=3600',
-    'Content-Type': 'application/xml'
-  }
+    'Content-Type': 'application/xml',
+  };
   return {
     headers,
-    body
-  }
+    body,
+  };
 }
 
 const sitemap = (posts) => `<?xml version="1.0" encoding="UTF-8" ?>
@@ -278,7 +278,7 @@ const sitemap = (posts) => `<?xml version="1.0" encoding="UTF-8" ?>
   `
     )
     .join('')}
-</urlset>`
+</urlset>`;
 ```
 
 ## Next steps from here
@@ -295,22 +295,22 @@ I can add any new pages to the array rather than creating a new
 how that may look:
 
 ```js
-import { getPosts } from '$lib/get-posts'
-import { website } from '$lib/info'
+import { getPosts } from '$lib/get-posts';
+import { website } from '$lib/info';
 
 export async function get() {
-  const posts = await getPosts()
-  const pages = [`about`, `newsletter`, `privacy-policy`]
-  const body = sitemap(posts, pages)
+  const posts = await getPosts();
+  const pages = [`about`, `newsletter`, `privacy-policy`];
+  const body = sitemap(posts, pages);
 
   const headers = {
     'Cache-Control': 'max-age=0, s-maxage=3600',
-    'Content-Type': 'application/xml'
-  }
+    'Content-Type': 'application/xml',
+  };
   return {
     headers,
-    body
-  }
+    body,
+  };
 }
 
 const sitemap = (posts, pages) => `<?xml version="1.0" encoding="UTF-8" ?>
@@ -351,7 +351,7 @@ const sitemap = (posts, pages) => `<?xml version="1.0" encoding="UTF-8" ?>
   `
     )
     .join('')}
-</urlset>`
+</urlset>`;
 ```
 
 ## Conclusion
