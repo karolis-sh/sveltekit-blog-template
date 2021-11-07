@@ -18,4 +18,4 @@ package.json
 
 # project
 /.svelte-kit
-/public
+/build

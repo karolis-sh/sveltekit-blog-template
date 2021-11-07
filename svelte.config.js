@@ -22,10 +22,7 @@ const config = {
   kit: {
     host: dev ? 'localhost:3000' : 'karolis.sh',
     target: '#svelte',
-    adapter: adapter({
-      pages: 'public',
-      assets: 'public',
-    }),
+    adapter: adapter(),
     vite: { server: { fs: { allow: ['content'] } } },
   },
 };

@@ -5,7 +5,7 @@
 	"type": "module",
 	"main": "n/a",
 	"scripts": {
-		"clean": "rm -rf public",
+		"clean": "rm -rf build",
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
 		"preview": "svelte-kit preview",

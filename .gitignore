@@ -5,5 +5,5 @@ package-lock.json
 
 # project
 /.svelte-kit
-/public
+/build
 .eslintcache
