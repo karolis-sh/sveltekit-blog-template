@@ -16,7 +16,7 @@
 		"format:package.json": "sort-package-json package.json",
 		"format:prettier": "prettier --write .",
 		"try": "run-s clean build preview",
-    "release": "run-s clean build && wrangler publish"
+    "release": "run-s clean build lint && wrangler publish"
 	},
 	"dependencies": {
 		"clsx": "^1.1.1",
