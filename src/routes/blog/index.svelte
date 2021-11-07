@@ -36,7 +36,7 @@
       <div class="py-8 first:pt-0">
         <div>
           <h1 class="!mt-0 !mb-1">
-            <a href={entry.slug}>{entry.title}</a>
+            <a href={entry.path}>{entry.title}</a>
           </h1>
           <time>{format(new Date(entry.date), 'MMMM d, yyyy')}</time>
           •
@@ -44,7 +44,7 @@
         </div>
         <div>{@html entry.previewHtml}</div>
         <div class="flex justify-end w-full">
-          <ButtonLink href={entry.slug}>Read More</ButtonLink>
+          <ButtonLink href={entry.path}>Read More</ButtonLink>
         </div>
       </div>
     {/each}

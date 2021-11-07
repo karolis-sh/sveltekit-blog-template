@@ -5,7 +5,7 @@
    * @type {import('@sveltejs/kit').Load}
    */
   export async function load({ page }) {
-    const entry = getEntries().find((content) => page.path === content.metadata.slug);
+    const entry = getEntries().find((content) => page.path === content.metadata.path);
 
     if (!entry) return { status: 404 };
 

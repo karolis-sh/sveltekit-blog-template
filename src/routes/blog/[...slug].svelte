@@ -5,7 +5,7 @@
    * @type {import('@sveltejs/kit').Load}
    */
   export async function load({ page }) {
-    const entry = getBlogEntries().find((content) => page.path === content.metadata.slug);
+    const entry = getBlogEntries().find((content) => page.path === content.metadata.path);
 
     if (!entry) return { status: 404 };
 
@@ -46,11 +46,11 @@
 
 <div class="pt-12 flex justify-between">
   {#if previous}
-    <ButtonLink isBack href={previous.metadata.slug}>{previous.metadata.title}</ButtonLink>
+    <ButtonLink isBack href={previous.metadata.path}>{previous.metadata.title}</ButtonLink>
   {:else}
     <div />
   {/if}
   {#if next}
-    <ButtonLink href={next.metadata.slug}>{next.metadata.title}</ButtonLink>
+    <ButtonLink href={next.metadata.path}>{next.metadata.title}</ButtonLink>
   {/if}
 </div>
