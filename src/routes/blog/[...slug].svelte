@@ -9,28 +9,30 @@
 
     if (!entry) return { status: 404 };
 
-    console.log('entry :>> ', entry);
-
-    return { props: entry };
+    return {
+      props: {
+        ...entry,
+        url: 'https://' + page.host + page.path,
+      },
+    };
   }
 </script>
 
 <script>
   import { format } from 'date-fns';
+  import SEO from '$lib/components/SEO.svelte';
   import ButtonLink from '$lib/components/ButtonLink.svelte';
-  import { name, website } from '$lib/info';
 
+  export let url;
   export let metadata;
   export let component;
   export let next;
   export let previous;
 
-  const { title, date, readingTime } = metadata;
+  const { title, description, date, readingTime } = metadata;
 </script>
 
-<svelte:head>
-  <title>{title}</title>
-</svelte:head>
+<SEO {url} {title} {description} og={{ type: 'article' }} />
 
 <article>
   <h1 class="!mt-0 !mb-1">{title}</h1>

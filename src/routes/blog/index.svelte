@@ -3,25 +3,32 @@
 
   export const prerender = true;
 
-  export const load = async () => {
+  /**
+   * @type {import('@sveltejs/kit').Load}
+   */
+  export async function load({ page }) {
     return {
       props: {
         entries: getBlogEntries().map((entry) => entry.metadata),
+        url: 'https://' + page.host + page.path,
       },
     };
-  };
+  }
 </script>
 
 <script>
+  import SEO from '$lib/components/SEO.svelte';
   import ButtonLink from '$lib/components/ButtonLink.svelte';
-  import { name } from '$lib/info.js';
   import { format } from 'date-fns';
+
+  export let url;
   export let entries;
+
+  const title = 'Blog Posts';
+  const description = 'Blog Posts about stuff';
 </script>
 
-<svelte:head>
-  <title>{name}</title>
-</svelte:head>
+<SEO {url} {title} {description} />
 
 <div class="flex flex-col flex-grow">
   <div class="flex-grow divide-y divide-gray-300 dark:divide-gray-700">

@@ -2,7 +2,6 @@
   import '../../prism.css';
   import { MoonIcon, SunIcon } from 'heroicons-svelte/solid';
   import { browser } from '$app/env';
-  import { name } from '$lib/info';
 
   let prefersLight = browser ? Boolean(JSON.parse(localStorage.getItem('prefersLight'))) : false;
 </script>
@@ -11,7 +10,7 @@
   <div class="mx-auto flex flex-col flex-grow w-full max-w-4xl">
     <div class="flex h-16 px-4 py-2 justify-between items-center">
       <h1 class="text-lg sm:text-2xl font-bold text-gray-800 dark:text-white">
-        <a href="/">{name}</a>
+        <a href="/">Karolis</a>
       </h1>
       {#if browser}
         <button

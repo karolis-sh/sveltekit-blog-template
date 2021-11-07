@@ -1,3 +1,2 @@
-export const name = 'your name';
-
-export const website = 'https://yourdomain.com';
+export const name = 'Karolis Šarapnickis';
+export const twitter = '@karolis_sh';

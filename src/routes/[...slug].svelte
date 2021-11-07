@@ -9,19 +9,25 @@
 
     if (!entry) return { status: 404 };
 
-    return { props: entry };
+    return {
+      props: {
+        ...entry,
+        url: 'https://' + page.host + page.path,
+      },
+    };
   }
 </script>
 
 <script>
+  import SEO from '$lib/components/SEO.svelte';
+
+  export let url;
   export let component;
   export let metadata;
 
-  const { title } = metadata;
+  const { title, description } = metadata;
 </script>
 
-<svelte:head>
-  <title>{title}</title>
-</svelte:head>
+<SEO {url} {title} {description} />
 
 <svelte:component this={component} />
