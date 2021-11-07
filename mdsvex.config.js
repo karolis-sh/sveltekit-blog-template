@@ -7,7 +7,7 @@ import readingTime from 'remark-reading-time';
 import preview, { textFormatter, htmlFormatter } from 'remark-preview';
 
 export default {
-  extensions: ['.svx', '.md'],
+  extensions: ['.md'],
   smartypants: {
     dashes: 'oldschool',
   },
@@ -28,29 +28,25 @@ export default {
         attribute: 'previewHtml',
       }
     ),
-    posts,
+    content,
     videos,
     relativeImages,
   ],
-  rehypePlugins: [
-    slugPlugin,
-    [
-      autolinkHeadings,
-      {
-        behavior: 'wrap',
-      },
-    ],
-  ],
+  rehypePlugins: [slugPlugin, [autolinkHeadings, { behavior: 'wrap' }]],
 };
 
 /**
  * Add slug to metadata and convert `date` timezone to UTC
  */
-function posts() {
+function content() {
   return (_, file) => {
     const parsed = path.parse(file.filename);
     const slug =
-      parsed.name === 'index' ? path.parse(file.filename).dir.split('/').pop() : parsed.name;
+      '/' +
+      path.relative(
+        path.join(process.cwd(), 'content'),
+        parsed.name === 'index' ? parsed.dir : path.join(parsed.dir, parsed.name)
+      );
 
     file.data.fm = {
       ...file.data.fm,

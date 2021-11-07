@@ -23,13 +23,7 @@ const config = {
       pages: 'public',
       assets: 'public',
     }),
-    vite: {
-      server: {
-        fs: {
-          allow: ['posts'],
-        },
-      },
-    },
+    vite: { server: { fs: { allow: ['content'] } } },
   },
 };
 
