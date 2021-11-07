@@ -19,9 +19,9 @@
 </script>
 
 <script>
-  import { format } from 'date-fns';
   import SEO from '$lib/components/SEO.svelte';
   import ButtonLink from '$lib/components/ButtonLink.svelte';
+  import Subheader from './_Subheader.svelte';
 
   export let url;
   export let metadata;
@@ -36,11 +36,7 @@
 
 <article>
   <h1 class="!mt-0 !mb-1">{title}</h1>
-  <div>
-    <time datetime={new Date(date).toISOString()}>{format(new Date(date), 'MMMM d, yyyy')}</time>
-    •
-    <span>{readingTime.text}</span>
-  </div>
+  <Subheader {date} {readingTime} />
   <svelte:component this={component} />
 </article>
 

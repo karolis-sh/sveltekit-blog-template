@@ -19,7 +19,7 @@
 <script>
   import SEO from '$lib/components/SEO.svelte';
   import ButtonLink from '$lib/components/ButtonLink.svelte';
-  import { format } from 'date-fns';
+  import Subheader from './_Subheader.svelte';
 
   export let url;
   export let entries;
@@ -38,9 +38,7 @@
           <h1 class="!mt-0 !mb-1">
             <a href={entry.path}>{entry.title}</a>
           </h1>
-          <time>{format(new Date(entry.date), 'MMMM d, yyyy')}</time>
-          •
-          <span>{entry.readingTime.text}</span>
+          <Subheader date={entry.date} readingTime={entry.readingTime} />
         </div>
         <div>{@html entry.previewHtml}</div>
         <div class="flex justify-end w-full">

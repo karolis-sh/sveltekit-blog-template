@@ -39,6 +39,7 @@ function remarkPath(baseDir = 'content') {
           path.join(process.cwd(), baseDir),
           parsed.name === 'index' ? parsed.dir : path.join(parsed.dir, parsed.name)
         ),
+      date: file.data.fm.date ? new Date(file.data.fm.date).toISOString().slice(0, 10) : undefined,
     };
   };
 }
