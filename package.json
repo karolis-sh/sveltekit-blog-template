@@ -8,14 +8,15 @@
 		"clean": "rm -rf build",
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
-		"preview": "svelte-kit preview",
+		"preview": "wrangler dev",
 		"lint": "run-p lint:*",
 		"lint:prettier": "prettier --check .",
 		"lint:eslint": "eslint --cache --ignore-path .gitignore",
 		"format": "run-p format:*",
 		"format:package.json": "sort-package-json package.json",
 		"format:prettier": "prettier --write .",
-		"try": "run-s clean build preview"
+		"try": "run-s clean build preview",
+    "release": "run-s clean build && wrangler publish"
 	},
 	"dependencies": {
 		"clsx": "^1.1.1",
@@ -25,6 +26,7 @@
 		"svelte-meta-tags": "^2.1.0"
 	},
 	"devDependencies": {
+		"@sveltejs/adapter-cloudflare-workers": "^1.0.0-next.25",
 		"@sveltejs/adapter-static": "^1.0.0-next.21",
 		"@sveltejs/kit": "^1.0.0-next.195",
 		"@tailwindcss/typography": "^0.4.1",

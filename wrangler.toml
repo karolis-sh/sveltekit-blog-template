@@ -1,0 +1,14 @@
+name = "svelte-test"
+account_id = 'a63058a5c1ad4e771f2608e0bbb8940b'
+type = 'javascript'
+workers_dev = true
+
+[site]
+bucket = "./build"
+entry-point = "./workers-site"
+
+[build]
+command = ""
+
+[build.upload]
+format = "service-worker"

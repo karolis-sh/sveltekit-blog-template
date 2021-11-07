@@ -1,7 +1,8 @@
 import { mdsvex } from 'mdsvex';
 import mdsvexConfig from './mdsvex.config.js';
 import preprocess from 'svelte-preprocess';
-import adapter from '@sveltejs/adapter-static';
+// import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-cloudflare-workers';
 
 const dev = process.env.NODE_ENV === 'development';
 
@@ -20,7 +21,7 @@ const config = {
   ],
 
   kit: {
-    host: dev ? 'localhost:3000' : 'karolis.sh',
+    host: dev ? 'localhost:3000' : 'svelte-test.ksh.workers.dev',
     target: '#svelte',
     adapter: adapter(),
     vite: { server: { fs: { allow: ['content'] } } },

@@ -19,3 +19,4 @@ package.json
 # project
 /.svelte-kit
 /build
+/workers-site
