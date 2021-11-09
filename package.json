@@ -3,20 +3,21 @@
 	"version": "0.0.1",
 	"license": "MIT",
 	"type": "module",
-	"main": "n/a",
+	"main": "workers-site/index.js",
 	"scripts": {
 		"clean": "rm -rf build",
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
-		"preview": "wrangler dev",
+		"start": "miniflare",
+		"start-cf": "wrangler dev",
 		"lint": "run-p lint:*",
 		"lint:prettier": "prettier --check .",
 		"lint:eslint": "eslint --cache --ignore-path .gitignore",
 		"format": "run-p format:*",
 		"format:package.json": "sort-package-json package.json",
 		"format:prettier": "prettier --write .",
-		"try": "run-s clean build preview",
-    "release": "run-s clean build lint && wrangler publish"
+		"try": "run-s clean build start",
+		"release": "run-s clean build lint && wrangler publish"
 	},
 	"dependencies": {
 		"clsx": "^1.1.1",
@@ -36,6 +37,7 @@
 		"eslint-plugin-svelte3": "^3.2.0",
 		"mdsvex": "^0.9.8",
 		"mdsvex-relative-images": "^1.0.1",
+		"miniflare": "^1.4.1",
 		"npm-run-all": "^4.1.5",
 		"postcss": "^8.3.0",
 		"postcss-focus-visible": "^5.0.0",
