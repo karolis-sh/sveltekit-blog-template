@@ -1,6 +1,7 @@
 ---
 title: Make an RSS Feed for your SvelteKit Project
 date: 2021-08-09
+excerpt:
 ---
 
 The indie web is alive and well and there are more and more people
@@ -239,13 +240,13 @@ const xml = (
           <description>A blog built with SvelteKit about tech and stuff!</description>
           <link>${website}/posts/${post.slug}/</link>
           <pubDate>${new Date(post.date)}</pubDate>
-          <content:encoded>${post.previewHtml} 
+          <content:encoded>${post.previewHtml}
             <div style="margin-top: 50px; font-style: italic;">
               <strong>
                 <a href="${website}/posts/${post.slug}">
                   Keep reading
                 </a>
-              </strong>  
+              </strong>
             </div>
           </content:encoded>
         </item>

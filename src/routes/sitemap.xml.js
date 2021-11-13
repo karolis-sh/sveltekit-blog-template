@@ -1,4 +1,5 @@
 import { getEntries } from '$lib/content';
+import { getUrl } from '$lib/utils';
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
@@ -6,13 +7,14 @@ import { getEntries } from '$lib/content';
 export async function get({ host }) {
   const entries = await getEntries();
 
-  const url = (path) => 'https://' + host + path;
-
   return {
     headers: {
+      'Cache-Control': 'max-age=0, s-maxage=3600',
       'Content-Type': 'application/xml',
     },
-    body: sitemap(entries.map((entry) => url(entry.metadata.path)).concat([url('/blog')])),
+    body: sitemap(
+      entries.map((entry) => getUrl(host, entry.metadata.path)).concat([getUrl(host, '/blog')])
+    ),
   };
 }
 
