@@ -1,6 +1,7 @@
 ---
 title: Make an RSS Feed for your SvelteKit Project
 date: 2021-08-09
+description: building an rss feed with svelte
 excerpt:
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: Make a Sitemap with Sveltekit
 date: 2021-08-21
+description: building a sitemap with svelte
 ---
 
 If you want to rank on Google (and other search engines) you need to

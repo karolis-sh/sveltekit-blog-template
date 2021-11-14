@@ -1,6 +1,7 @@
 ---
 title: Getting Started
 date: 2021-09-10
+description: Using this template
 ---
 
 Based on <https://github.com/mattjennings/sveltekit-blog-template>

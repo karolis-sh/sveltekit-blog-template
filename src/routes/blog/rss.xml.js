@@ -1,6 +1,6 @@
 import XMLWriter from 'xml-writer';
 import { name } from '$lib/info';
-import { getUrl } from '$lib/utils';
+import { getUrl, getFileUrl } from '$lib/utils';
 import { getBlogEntries } from '$lib/content';
 
 /**
@@ -35,28 +35,42 @@ export async function get({ host }) {
   xw.writeAttribute('xmlns:atom', 'https://www.w3.org/2005/Atom');
   xw.writeAttribute('version', '2.0');
   el('channel', () => {
-    const title = name + ' RSS Feed';
-    const link = getUrl(host);
+    const title = 'karolis.sh';
+    const link = getUrl(host, '/blog');
     el('title', title);
+    el('description', name + ' on Software Engineering');
     el('link', link);
     el('language', 'en', true);
-    el('description', 'Blog posts on stuff');
+
+    xw.startElement('atom:link');
+    xw.writeAttribute('href', getFileUrl(host, '/blog/rss.xml'));
+    xw.writeAttribute('rel', 'self');
+    xw.writeAttribute('type', 'application/rss+xml');
+    xw.endElement();
+
     el('image', () => {
-      el('url', link + '/favicon.png', true);
-      el('title', title, true);
+      el('url', getFileUrl(host, '/favicon.png'), true);
+      el('title', title);
       el('link', link, true);
     });
     el('category', 'JavaScript');
 
-    entries.forEach(({ metadata: { path, title, description, date, previewHtml } }) => {
+    entries.forEach(({ metadata: { path, title, date, previewHtml } }) => {
       const url = getUrl(host, path);
 
       el('item', () => {
         el('title', title);
         el('link', url, true);
-        el('description', description);
         el('pubDate', new Date(date).toUTCString(), true);
-        el('content:encoded', previewHtml + '\n' + readMore(url));
+        el(
+          'description',
+          `${previewHtml}
+<div style="margin-top: 40px; margin-bottom: 20px; font-style: italic;">
+  <strong>
+    <a href="${url}">Continue Reading...</a>
+  </strong>
+</div>`
+        );
       });
     });
   });
@@ -70,12 +84,4 @@ export async function get({ host }) {
     },
     body: xw.toString(),
   };
-}
-
-function readMore(url) {
-  return `<div style="margin-top: 50px; font-style: italic;">
-  <strong>
-    <a href="${url}">Keep reading</a>
-  </strong>
-</div>`;
 }
